@@ -10,7 +10,7 @@
         <ul class=" text-sm">
           <template v-for="(header, index) in page.headers" :key="'header-' + header.title + index">
             <li v-if="page.title != header.title">
-              <a :href="'#' + header.title" :class="`h-8 block ml-${header.level}`" >
+              <a :href="titleHref(header.title)" :class="levelStyle(header)" >
                 {{header.title}}
               </a>
             </li>
@@ -25,5 +25,25 @@
 import { useData } from "vitepress";
 const { page } = useData()
 console.log(page.value);
+// 导航样式
+const levelStyle = (header) => {
+  let _default = 'h-8 block '
+  if (header.level == 1) {
+    return _default + 'ml-0 text-gray-800'
+  } else if (header.level == 2) {
+    return _default + 'ml-2 text-gray-700'
+  } else if (header.level == 3) {
+    return _default + 'ml-4 text-xs text-gray-600'
+  } else if (header.level == 4) {
+    return _default + 'ml-6 text-gray-500'
+  }
+  
+  return _default + 'ml-8 text-gray-500'
+}
+
+// 锚点处理
+const titleHref = (title) => {
+  return '#' + title.replace(/\s/g, '-')
+}
 
 </script>

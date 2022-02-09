@@ -10,10 +10,10 @@ async function getPosts() {
     console.log("test", paths)
     let posts = await Promise.all(
         paths.map(async (item) => {
-            console.log("test", item)
+            // console.log("test", item)
             const content = await fs.readFile(item, 'utf-8')
             const { data } = matter(content)
-            console.log("test", data)
+            // console.log("test", data)
             data.date = _convertDate(data.date)
             data.filePath = item
             item = item.replace('docs/', '')
@@ -73,7 +73,7 @@ function _compareDate(obj1, obj2) {
 
 async function getPostMDFilePaths() {
     let paths = await globby(['**.md'], {
-        ignore: ['node_modules', '*/about/*', 'README.md', 'docs/index.md']
+        ignore: ['node_modules', '*/about/*', 'README.md', 'docs/**/index.md']
     })
     return paths.filter((item) => item.includes('docs/'))
 }

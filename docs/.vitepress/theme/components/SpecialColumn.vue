@@ -26,6 +26,5 @@ const linkTo = (path) => {
   } else {
     router.go(path)
   }
-  visible.value = false
 }
 </script>

@@ -1,6 +1,29 @@
 <template>
-  <div class="menu">
-    <button @click="show = !show" class="pb-8 text-blue-500">👉 专栏文章 👈</button>
+  <div class="menu mb-8 border-b border-gray-200 border-solid">
+    <div class="flex justify-between">
+      <button class="text-gray-500 font-light ">专栏文章</button>
+      <button @click="show = !show" class="text-blue-500">👉 推荐 👈 </button>
+    </div>
+    
+    <div
+      key="slidebar-menu"
+      class="slidebar-menu"
+    >
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 w-full">
+      <template 
+        v-for="(item, index) in proses" 
+        :key="item.text + 'column-child-' + index"
+      >
+        <li
+          @click="linkTo(item.regularPath)"
+          class="px-4 mb-2 text-sm flex items-start justify-center flex-col pr-2 w-full cursor-pointer text-gray-600 hover:text-blue-500"
+        >
+          <span class="truncate mb-1">{{ item.frontMatter.title }}</span>
+          <span class="truncate text-xs text-gray-400">创建时间：{{item.frontMatter.date}}</span>
+        </li>
+      </template>
+    </ul>
+    </div>
   </div>
   <transition name="menu">
     <div
@@ -20,6 +43,9 @@
           <span class="truncate">{{ item.text }}</span>
         </li>
       </template>
+      <li v-if="showChildren.length == 0">
+        <span class="text-gray-500 text-xs">暂无数据</span>
+      </li>
     </ul>
     </div>
   </transition>
@@ -33,6 +59,7 @@ const { theme, page } = useData();
 const router = useRouter();
 const route = useRoute();
 
+const proses = ref([])
 
 const show = ref(false);
 const showChildren = ref([])
@@ -58,6 +85,46 @@ const handleProses = () => {
 handleProses()
 
 
+const pageProses = () => {
+  let _pages = Object.values(theme.value.pages)
+  console.log(_pages)
+  if(_pages) {
+    const currentPage = _pages.filter((item) => {
+      console.log(item.regularPath, "item", route.path, item.regularPath.includes(route.path))
+      return item.regularPath.includes(route.path)
+    })
+    console.log(currentPage, "currentPage")
+    proses.value = currentPage
+    // if(currentPage) {
+    //   showChildren.value = currentPage.children
+    // }
+  }
+}
+pageProses()
+
+// 处理时间 分钟前
+const formatDate = (_date) => {
+  const date = new Date(_date);
+  const now = new Date();
+  const diff = (now.getTime() - date.getTime()) / 1000;
+  // 今天日期
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  // 今日时间差
+  const todayDiff = (now.getTime() - today.getTime()) / 1000;
+
+  // 24小时秒数
+  const daySeconds = 60 * 60 * 24;
+  // 24小时内
+  if (diff < todayDiff) {
+    return '今天';
+  } else if(diff < todayDiff + daySeconds) {
+    return '昨天';
+  } else if (diff < daySeconds * 7) {
+    return Math.floor(diff / daySeconds) + '天前';
+  } else {
+    return date.toLocaleDateString();
+  }
+}
 </script>
 <style scoped>
 .slidebar-menu ul>li::before {

@@ -79,7 +79,7 @@ const linkTo = (path) => {
 }
 
 .large {
-  font-size: 2em!important;
+  font-size: 1.8em!important;
 }
 .big {
   font-size: 1.5em!important;

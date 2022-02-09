@@ -10,7 +10,7 @@
         <div>
           <button
           @click="router.go(frontmatter.actionLink)"
-            class="bg-gradient-to-r from-green-300 to-blue-400 h-9 px-6 rounded-xl text-gray-50 hover:text-gray-200"
+            class="bg-gradient-to-br from-blue-400  to-green-400 h-9 px-10 rounded-xl text-gray-50 w-full sm:w-fit hover:to-purple-500 transition-all "
           >{{ frontmatter.actionText }}</button>
         </div>
       </div>
@@ -56,7 +56,7 @@ const imageHandler = (image) => {
 </script>
 <style scope>
 .home {
-  height: calc(100vh - 64px);
+  min-height: calc(100vh - 64px);
   width: 100%;
   box-sizing: border-box;
   padding: 40px 32px;

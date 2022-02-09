@@ -2,10 +2,9 @@
 import Layout from './layouts/Layout.vue'
 import NotFound from './layouts/404.vue'
 import SidebarMenu from './global-components/SidebarMenu.vue'
+import ProseList from './global-components/ProseList.vue'
 import "tailwindcss/tailwind.css"
 import "./index.css"
-
-// import { TroisJSVuePlugin } from 'https://unpkg.com/troisjs@0.3.3/build/trois.module.cdn.min.js';
 
 export default {
   Layout,
@@ -13,7 +12,7 @@ export default {
   enhanceApp({ app }) {
     // register global components
     app.component('sidebar-menu', SidebarMenu)
-    // app.use(TroisJSVuePlugin)
+    app.component('prose-list', ProseList)
     // app.component('MyGlobalComponent', () => import(/* webpackChunkName: "my-global-component" */ './components/MyGlobalComponent.vue'))
   }
 }

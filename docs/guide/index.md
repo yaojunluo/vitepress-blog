@@ -1,13 +1,7 @@
 ---
 date: 2022-2-10
-title: 前端学习
-description: 我的前端学习笔记
-tags:
-- macOS
+title: 文章列表
+description: 最新文章列表
 ---
 
-<sidebar-menu />
-
-## 我的前端学习笔记
-
-占坑
+<prose-list />

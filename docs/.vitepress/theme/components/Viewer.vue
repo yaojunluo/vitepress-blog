@@ -5,9 +5,12 @@
         v-if="!loaded"
         class="absolute h-full left-0 w-full text-center z-10 flex justify-center items-center flex-col pointer-events-none text-gray-500 font-bold"
       >
-        {{ loading }}
-        <p class="text-gray-500 text-xs">模型加载中</p>
+        <div class="h-2 w-52 max-w-full bg-gray-200 rounded-md">
+          <div class="h-2 w-2 rounded-full bg-gradient-to-br from-blue-400  to-green-400 transition-all" :style="`width: ` + loading"></div>
+        </div>
+        <span class="mt-1">{{loading}}</span>
       </div>
+      
     </div>
   </div>
 </template>
@@ -168,7 +171,7 @@ const loadModel = () => {
       const percentComplete = xhr.loaded / xhr.total * 100
       loading.value = Math.round(percentComplete, 2) + '%';
     }
-  }, 100), function (error) {
+  }, 1), function (error) {
     console.log('An error happened', error);
   });
 }
@@ -201,8 +204,6 @@ onMounted(() => {
   if(page.value.frontmatter.heroImage){
     loadModelManual()
   }
-  
-  console.log('mounted', page.value.frontmatter.heroImage)
 })
 
 // 鼠标移入事件
@@ -214,7 +215,9 @@ const mouseOver = (e) => {
 const lastOffsetX = ref(0)
 const lastOffsetZ = ref(0)
 const mouseMove = throttle((e) => {
-  
+  if(!modelScene){
+    return
+  }
   modelScene.rotation.y += ((Math.PI * 0.1) * ((e.offsetX - lastOffsetX.value) / e.clientX))
 
   if(modelScene.rotation.y > Math.PI * 0.1){

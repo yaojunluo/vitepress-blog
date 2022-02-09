@@ -16,6 +16,29 @@ body {
   transform: translateY(-100%);
 }
 
+/* 自定义滚动条 */
+/* 设置滚动条的样式 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 3px;
+}
+
+/* 滚动槽 */
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: transparent;
+}
+
+/* 滚动条滑块 */
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #cacbd4;
+}
+/* 页面失去焦点时滑块颜色 */
+::-webkit-scrollbar-thumb:window-inactive {
+  background: #e5e7eb;
+}
+
 code[class*=language-],
 pre[class*=language-] {
   color: #000;
@@ -244,7 +267,7 @@ pre[class*=language-] {
 .prose h1 {
   color: #111827;
   font-weight: 800;
-  font-size: 2.25em;
+  font-size: 1.8em;
   margin-top: 0;
   margin-bottom: .8888889em;
   line-height: 1.1111111

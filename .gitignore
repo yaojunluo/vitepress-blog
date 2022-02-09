@@ -3,6 +3,7 @@ node_modules
 
 
 # local env files
+build.sh
 .env.local
 .env.*.local
 *.tar.gz

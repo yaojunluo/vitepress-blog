@@ -5,8 +5,8 @@ heroImage: /road.gltf
 modelSize: 300
 heroAlt: Logo image
 heroText: 💪 吃饱就开始学习吧
-tagline: 炼气期前端程序员，仙路茫茫 - 📖 Good good study, day day up!
-actionText: 开始学习
+tagline: 炼气期前端程序员 - 📖 Good good study, day day up!
+actionText: 出发吧
 actionLink: /guide/
 features:
   - title: 💡 前端开发
