@@ -317,7 +317,7 @@ pre[class*=language-] {
 
 .prose code:after,
 .prose code:before {
-  content: "`"
+  content: ""
 }
 
 .prose pre {

@@ -46,7 +46,7 @@ The key's randomart image is:
 
 2. 使用`ssh-copy-id`将A的公钥发给B（假设IP为192.168.1.1）
 
-```
+```bash
 ssh-copy-id root@192.168.1.1
 ```
 
