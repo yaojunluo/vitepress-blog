@@ -3,6 +3,7 @@ node_modules
 
 
 # local env files
+design
 build.sh
 .env.local
 .env.*.local

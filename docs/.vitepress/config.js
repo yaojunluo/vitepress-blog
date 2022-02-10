@@ -11,6 +11,10 @@ async function config() {
     description: 'Just playing around.',
     // 引入样式 
     head: [
+      [
+        'link', // 设置 favicon.ico，注意图片放在 public 文件夹下
+        { rel: 'icon', href: 'favicon.png' }
+      ],
       ['link', { rel: 'stylesheet', href:'//at.alicdn.com/t/font_3171857_jvphawt6f2m.css' }],
       ['script', { }, `
         var _hmt = _hmt || [];
